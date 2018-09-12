@@ -300,3 +300,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+azure-ad-console/appsettings.dev.json
