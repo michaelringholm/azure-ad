@@ -51,7 +51,15 @@ namespace azure_ad_console
             response.EnsureSuccessStatusCode();
             string responseBody = response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
             return responseBody;
-        }        
+        }    
+
+        public IEnumerable<SimpleGroup> InviteUser(String email, String redirectUrl)
+        {            
+            var url = $"https://graph.microsoft.com/v1.0/users/{userId}/memberOf";
+            String responseBody = callEndpoint(url);
+            var oData = JsonConvert.DeserializeObject<OData>(responseBody);            
+            return oData.Value;
+        }            
 
         public string GetGroupId(string displayName, string onPremisesSid)
         {
